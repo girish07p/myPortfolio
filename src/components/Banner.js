@@ -57,9 +57,9 @@ export const Banner = () => {
               <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <span className="tagline">Welcome to my Portfolio</span>
                 <h1>{`Hi! I'm Girish`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "DevOps Enthusiast" ]'><span className="wrap">{text}</span></span></h1>
-                  <p>“Turning Ideas into Scalable, High-Performance Web Apps!”
+                  <p>“Turning Ideas into Scalable, High-Performance Web Apps!”<br/>
                   🛠 MERN Stack | Backend Architect | DSA Enthusiast</p>
-                  <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
+                  <button onClick={() => window.location.href = '#connect'}>Let’s Connect <ArrowRightCircle size={25} /></button>
               </div>}
             </TrackVisibility>
           </Col>

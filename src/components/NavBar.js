@@ -1,30 +1,51 @@
 import { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom"; // ✅ Required for navigation
 import logo from "../assets/img/logo.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/nav-icon2.svg";
 import navIcon3 from "../assets/img/nav-icon3.svg";
-import { HashLink } from "react-router-hash-link";
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
+  };
+
+  const handleProjectsClick = (e) => {
+    e.preventDefault();
+
+    if (location.pathname !== "/") {
+      // ✅ Not on home, navigate to home first
+      navigate("/");
+      setTimeout(() => scrollToProjects(), 500); // Delay ensures page loads first
+    } else {
+      // ✅ Already on home, just scroll
+      scrollToProjects();
+    }
+
+    onUpdateActiveLink("projects");
+  };
+
+  const scrollToProjects = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      console.error("❌ 'projects' section not found in DOM");
+    }
   };
 
   return (
@@ -40,28 +61,22 @@ export const NavBar = () => {
           <Nav className="ms-auto">
             <Nav.Link
               href="#home"
-              className={
-                activeLink === "home" ? "active navbar-link" : "navbar-link"
-              }
+              className={activeLink === "home" ? "active navbar-link" : "navbar-link"}
               onClick={() => onUpdateActiveLink("home")}
             >
               Home
             </Nav.Link>
             <Nav.Link
               href="#skills"
-              className={
-                activeLink === "skills" ? "active navbar-link" : "navbar-link"
-              }
+              className={activeLink === "skills" ? "active navbar-link" : "navbar-link"}
               onClick={() => onUpdateActiveLink("skills")}
             >
               Skills
             </Nav.Link>
             <Nav.Link
-              href="#projects"
-              className={
-                activeLink === "projects" ? "active navbar-link" : "navbar-link"
-              }
-              onClick={() => onUpdateActiveLink("projects")}
+              href="/"
+              className={activeLink === "projects" ? "active navbar-link" : "navbar-link"}
+              onClick={handleProjectsClick} // ✅ Calls function with if condition
             >
               Projects
             </Nav.Link>
@@ -86,11 +101,6 @@ export const NavBar = () => {
                 <img src={navIcon3} alt="Social Link 3" />
               </a>
             </div>
-            <HashLink to="#connect">
-              <button className="vvd">
-                <span>Let’s Connect</span>
-              </button>
-            </HashLink>
           </span>
         </Navbar.Collapse>
       </Container>

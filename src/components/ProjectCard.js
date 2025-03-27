@@ -1,9 +1,23 @@
 import { Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-export const ProjectCard = ({ title, description, imgUrl, link }) => {
+export const ProjectCard = ({ id, title, description, imgUrl }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/projects/${id}`);
+  };
+
   return (
     <Col size={12} sm={6} md={4}>
-      <a href={link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit" }}>
+      <div 
+        onClick={handleClick}
+        style={{ 
+          textDecoration: "none", 
+          color: "inherit",
+          cursor: "pointer" 
+        }}
+      >
         <div className="proj-imgbx">
           <img src={imgUrl} alt={title} />
           <div className="proj-txtx">
@@ -11,7 +25,7 @@ export const ProjectCard = ({ title, description, imgUrl, link }) => {
             <span>{description}</span>
           </div>
         </div>
-      </a>
+      </div>
     </Col>
   );
 };

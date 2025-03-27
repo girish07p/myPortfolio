@@ -1,62 +1,14 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
-import projImg1 from "../assets/img/mazeSolver.png";
-import projImg2 from "../assets/img/ball-shooting.png";
-import projImg3 from "../assets/img/coin-exchange.png";
-import projImg4 from "../assets/img/ecomGrocerry.png";
-import projImg5 from "../assets/img/oneDayCart.png";
-import projImg6 from "../assets/img/printingQueue.png";
-import projImg7 from "../assets/img/restraApp.png";
-
+import { projects } from '../data/projectsData.js';
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
 export const Projects = () => {
 
-  const projects1 = [
-    {
-      title: "1DayCart (E-Commerce Startup)",
-      description: "Backend Intern",
-      imgUrl: projImg5,
-      
-    },
-    {
-      title: "Restra-App Startup",
-      description: "Design & Development",
-      imgUrl: projImg7,
-    },
-    {
-      title: "General Store e-commerce",
-      description: "Developed & Deployed",
-      imgUrl: projImg4,
-    },
-    {
-      title: "Dynamic Coin-exchange",
-      description: "Design & Development",
-      imgUrl: projImg3,
-      link:"https://www.youtube.com/watch?v=adZkE-TD_T8"
-    },
-    {
-      title: "Ball-Shooting Game",
-      description: "Design & Development",
-      imgUrl: projImg2,
-      link:"https://girish07p.github.io/Ball-Shooting-Game/"
-    },
-    {
-      title: "Maze Solver | Visual BFS ",
-      description: "Design and Development in C++",
-      imgUrl: projImg1,
-    },
-  ];
-  // projects for the second tab
-  const projects2 = [
-    {
-      title: "Printing Queue",
-      description: "Design and Development",
-      imgUrl: projImg6,
-    },
-  ];
+const projects1 = projects.filter(p => ["p01", "p02", "p03", "p04", "p05", "p06"].includes(p.id));
+const projects2 = projects.filter(p => ["p07"].includes(p.id));
 
   return (
     <section className="project" id="projects">
@@ -84,10 +36,10 @@ export const Projects = () => {
                     <Tab.Pane eventKey="first">
                       <Row>
                         {
-                          projects1.map((project, index) => {
+                          projects1.map((project) => {
                             return (
                               <ProjectCard
-                                key={index}
+                                key={project.id}
                                 {...project}
                                 />
                             )
@@ -98,10 +50,10 @@ export const Projects = () => {
                     <Tab.Pane eventKey="second">
                     <Row>
                         {
-                          projects2.map((project, index) => {
+                          projects2.map((project) => {
                             return (
                               <ProjectCard
-                                key={index}
+                                key={project.id}
                                 {...project}
                                 />
                             )

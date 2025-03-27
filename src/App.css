@@ -777,3 +777,90 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding-top: 5rem;
   color: #fff;
 }
+/************ Project Displayer Animations ************/
+/* Fade in and slide up effect */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effect */
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* Apply animations */
+.project-displayer {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+.project-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-item:hover {
+  animation: scaleUp 0.3s ease-in-out forwards;
+}
+/* Smooth fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply fade-in animation */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+/* Apply slide-up animation */
+.slide-up {
+  opacity: 0;
+  animation: slideUp 0.8s ease-in-out forwards;
+}
+
+/* Styling for smooth scrolling */
+.project-displayer-container {
+  padding-top: 20px;
+}
+
+.main-project-image,
+.additional-image {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Scale effect on hover */
+.main-project-image:hover,
+.additional-image:hover {
+  transform: scale(1.05);
+}

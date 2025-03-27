@@ -13,7 +13,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path='' element={<Projects />} /> {/* ✅ No leading "/" */}
-      <Route path= 'projects' element={<Projects />} /> {/* ✅ No leading "/" */}
       <Route path="/projects/:projectId" element={<ProjectDisplayer />} />
     </Route>
   )

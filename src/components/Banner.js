@@ -20,7 +20,7 @@ export const Banner = () => {
     }, delta);
 
     return () => { clearInterval(ticker) };
-  }, [text])
+  }, [text]);
 
   const tick = () => {
     let i = loopNum % toRotate.length;
@@ -45,34 +45,36 @@ export const Banner = () => {
     } else {
       setIndex(prevIndex => prevIndex + 1);
     }
-  }
+  };
 
   return (
     <section className="banner" id="home">
       <Container>
-        <Row className="aligh-items-center">
+        <Row className="align-items-center">
           <Col xs={12} md={6} xl={7}>
-            <TrackVisibility>
+            <TrackVisibility partialVisibility>
               {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-                <h1>{`Hi! I'm Girish`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "DevOps Enthusiast" ]'><span className="wrap">{text}</span></span></h1>
+                <div className={`smooth-reveal ${isVisible ? "show" : ""}`}>
+                  <span className="tagline">Welcome to my Portfolio</span>
+                  <h1>{`Hi! I'm Girish`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "DevOps Enthusiast" ]'><span className="wrap">{text}</span></span></h1>
                   <p>“Turning Ideas into Scalable, High-Performance Web Apps!”<br/>
                   🛠 MERN Stack | Backend Architect | DSA Enthusiast</p>
                   <button onClick={() => window.location.href = '#connect'}>Let’s Connect <ArrowRightCircle size={25} /></button>
-              </div>}
+                </div>
+              }
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
-            <TrackVisibility>
+            <TrackVisibility partialVisibility>
               {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
-                </div>}
+                <div className={`smooth-reveal ${isVisible ? "show" : ""}`}>
+                  <img src={headerImg} alt="Header Img" />
+                </div>
+              }
             </TrackVisibility>
           </Col>
         </Row>
       </Container>
     </section>
-  )
-}
+  );
+};
